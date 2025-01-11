@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        {% load static %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/style.css">
+        <!-- <link href="static/css/outline.css" rel="stylesheet">
+        <link href="static/css/outline-settings.css" rel="stylesheet"> -->
+        <title>BS</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="proj-name">Backend Statistics</h1>
+        </header>
+        <div class="sidenav">
+		    <a href="/">Главная</a>
+            <a href="/statistics">Общая статистика</a>
+		    <a href="/relevance">Востребованность</a>
+		    <a href="/area">География</a>
+            <a href="/skills">Навыки</a>
+            <a class="active" href="/vacancies">Последние вакансии</a>
+	    </div>
+        <main>
+            <section class="dynamic">
+                <div class="subtitle border">
+                    <h2>Последние 5 вакансий Backend-программиста</h2>
+                </div>
+                <ul class="vac">
+                    {% for vac in data_vac %}
+                    <li>
+                        <a href="{{ vac.url }}" class="vac-link">
+                            <div class="subtitle vac">
+                                <div class="vacancy">
+                                    <h4 class="vacname">{{ vac.name }}</h4>
+                                    <p>Описание: {{ vac.description }}</p>
+                                    <p>Навыки: {{ vac.key_skills }}</p>
+                                    <p>Компания: {{ vac.company }}</p>
+                                    <p>Оклад: {{ vac.salary }}</p>
+                                    <p>Название региона: {{ vac.area }}</p>
+                                    <p class="vacdate">От {{ vac.date }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>                
+            </section>
+        </main>
+        <footer>
+            <p>Студент 2-го курса ИРИТ-РТФ УрФУ</p>
+            <p>ФИО: Леонтьев Дмитрий Алексеевич</p>
+            <p>Группа: РИ-230912</p>
+        </footer>
+    </body>
+</html>
+
+<style>
+    .vac-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    .vac-link:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+
+
